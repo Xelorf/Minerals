@@ -1,16 +1,23 @@
 package sample.controllers;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sample.db.MineralsDAO;
 import sample.models.MainModel;
 import sample.models.Mineral;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -45,9 +52,7 @@ public class MainController implements Initializable {
         model.setMinerals(mineralsDAO.getMinerals());
         table.setItems(FXCollections.observableList(model.getMinerals()));
 
-        addButton.setOnAction(event -> {
-
-        });
+        addButton.setOnAction(event -> openAddView());
         deleteButton.setOnAction(event -> {
             if(table.getSelectionModel().getSelectedIndex()!=-1){
                 mineralsDAO.deleteMineral(table.getSelectionModel().getSelectedItem());
@@ -60,11 +65,27 @@ public class MainController implements Initializable {
     }
 
     private void updateTable() {
-        table.getItems().clear();
+        ObservableList<Mineral> filtered = FXCollections.observableArrayList();
         for(Mineral mineral : model.getMinerals()){
-            if(mineral.getName().contains(searchTextField.getText())){
-                table.getItems().add(mineral);
+            if(mineral.getName().toLowerCase().contains(searchTextField.getText().trim().toLowerCase())){
+                filtered.add(mineral);
             }
+        }
+        table.setItems(filtered);
+    }
+
+    private void openAddView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/add.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Добавление аккаунта");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
