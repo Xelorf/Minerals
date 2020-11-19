@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
+    <TableView fx:id="table" layoutX="8.0" layoutY="40.0" prefHeight="337.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+        <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="120.0" text="Название" />
+            <TableColumn fx:id="formulaColumn" prefWidth="150.0" text="Формула" />
+            <TableColumn fx:id="colorColumn" prefWidth="210.0" text="Цвет" />
+            <TableColumn fx:id="lineColorColumn" prefWidth="150.0" text="Цвет черты" />
+            <TableColumn fx:id="shineColumn" prefWidth="150.0" text="Блеск" />
+            <TableColumn fx:id="transparencyColumn" prefWidth="150.0" text="Прозрачность" />
+            <TableColumn fx:id="hardnessColumn" prefWidth="150.0" text="Твёрдость" />
+            <TableColumn fx:id="densityColumn" prefWidth="120.0" text="Плотность" />
+        </columns>
+    </TableView>
+    <Button fx:id="addButton" layoutY="2.0" mnemonicParsing="false" text="Добавить" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+    <Button fx:id="deleteButton" layoutX="84.0" layoutY="5.0" mnemonicParsing="false" text="Удалить" />
+    <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="450.0" promptText="Поиск по названию" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+</AnchorPane>
