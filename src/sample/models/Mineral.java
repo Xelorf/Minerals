@@ -5,7 +5,7 @@ public class Mineral {
     private String name;
     private String formula;
     private String color;
-    private String line_color;
+    private String lineColor;
     private String shine;
     private String transparency;
     private String hardness;
@@ -16,7 +16,7 @@ public class Mineral {
         this.name = name;
         this.formula = formula;
         this.color = color;
-        this.line_color = line_color;
+        this.lineColor = line_color;
         this.shine = shine;
         this.transparency = transparency;
         this.hardness = hardness;
@@ -55,12 +55,12 @@ public class Mineral {
         this.color = color;
     }
 
-    public String getLine_color() {
-        return line_color;
+    public String getLineColor() {
+        return lineColor;
     }
 
-    public void setLine_color(String line_color) {
-        this.line_color = line_color;
+    public void setLineColor(String lineColor) {
+        this.lineColor = lineColor;
     }
 
     public String getShine() {
