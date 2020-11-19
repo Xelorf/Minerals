@@ -64,6 +64,11 @@ public class MainController implements Initializable {
         });
     }
 
+    public void updateData() {
+        model.setMinerals(mineralsDAO.getMinerals());
+        updateTable();
+    }
+
     private void updateTable() {
         ObservableList<Mineral> filtered = FXCollections.observableArrayList();
         for(Mineral mineral : model.getMinerals()){
@@ -84,6 +89,7 @@ public class MainController implements Initializable {
             stage.setScene(new Scene(root, 600, 400));
             stage.setResizable(false);
             stage.show();
+            loader.<AddController>getController().setParent(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

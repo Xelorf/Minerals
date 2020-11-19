@@ -42,7 +42,7 @@ public class MineralsDAO implements IMineralsDAO {
     public void addMineral(Mineral mineral) {
         String command = "INSERT INTO " + Const.MINERALS_TABLE + "(" + Const.MINERAL_ID + ", " + Const.MINERAL_NAME + ", " +
                 Const.MINERAL_FORMULA + ", " + Const.MINERAL_COLOR + ", " + Const.MINERAL_LINE_COLOR + ", " +
-                Const.MINERAL_SHINE + ", " + Const.MINERAL_TRANSPARENCY + ", " + Const.MINERAL_HARDNESS + ", " + Const.MINERAL_DENSITY + ") Values(?,?,?,?,?,?,?,?);";
+                Const.MINERAL_SHINE + ", " + Const.MINERAL_TRANSPARENCY + ", " + Const.MINERAL_HARDNESS + ", " + Const.MINERAL_DENSITY + ") Values(?,?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement statement = dbHandler.getDbConnection().prepareStatement(command);
             statement.setLong(1, mineral.getId());
