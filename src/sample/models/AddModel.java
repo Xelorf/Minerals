@@ -1,5 +1,8 @@
 package sample.models;
 
+/**
+ * Модель экрана добавления минерала
+ */
 public class AddModel {
 
     private Mineral mineral;

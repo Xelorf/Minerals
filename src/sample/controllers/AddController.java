@@ -12,6 +12,9 @@ import sample.models.Mineral;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Контроллер экрана добавления минерала
+ */
 public class AddController implements Initializable {
 
     public TextField nameTextField;
@@ -29,6 +32,9 @@ public class AddController implements Initializable {
     private final AddModel model = new AddModel();
     private final MineralsDAO mineralsDAO = new MineralsDAO();
 
+    /**
+     * Инициализация экрана
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         model.setMineral(new Mineral(System.currentTimeMillis(), "", "", "", "", "", "", "", ""));
@@ -43,7 +49,7 @@ public class AddController implements Initializable {
         addButton.setOnAction(event -> {
             if (checkData()) {
                 mineralsDAO.addMineral(model.getMineral());
-                ((Stage)(addButton.getScene().getWindow())).close();
+                ((Stage) (addButton.getScene().getWindow())).close();
                 parent.updateData();
             } else {
                 messageLabel.setText("Заполните все поля");
@@ -51,6 +57,9 @@ public class AddController implements Initializable {
         });
     }
 
+    /**
+     * Проверка заполненности всех свойств
+     */
     private boolean checkData() {
         Mineral m = model.getMineral();
         return m.getName().length() > 0 && m.getFormula().length() > 0 && m.getColor().length() > 0 &&
@@ -58,6 +67,9 @@ public class AddController implements Initializable {
                 m.getHardness().length() > 0 && m.getDensity().length() > 0;
     }
 
+    /**
+     * Сеттер свойства parent
+     */
     public void setParent(MainController parent) {
         this.parent = parent;
     }

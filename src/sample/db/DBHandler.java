@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Подключение к базе данных
+ */
 public class DBHandler extends Configs {
 
     public Connection getDbConnection() {

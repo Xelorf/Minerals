@@ -1,5 +1,8 @@
 package sample.db;
 
+/**
+ * Строковые константы названий таблиц и столбцов
+ */
 public class Const {
     public static final String MINERALS_TABLE = "minerals";
     public static final String MINERAL_ID = "id";

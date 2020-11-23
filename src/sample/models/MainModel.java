@@ -2,7 +2,11 @@ package sample.models;
 
 import java.util.List;
 
+/**
+ * Модель главного экрана
+ */
 public class MainModel {
+
     private List<Mineral> minerals;
     private String searchText;
 

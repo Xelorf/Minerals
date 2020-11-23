@@ -1,6 +1,10 @@
 package sample.models;
 
+/**
+ * Модель минерала
+ */
 public class Mineral {
+
     private long id;
     private String name;
     private String formula;

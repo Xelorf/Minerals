@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Доступ к данным минералов
+ */
 public class MineralsDAO implements IMineralsDAO {
 
     private final DBHandler dbHandler = new DBHandler();

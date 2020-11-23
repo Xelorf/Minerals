@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Контроллер главного экрана
+ */
 public class MainController implements Initializable {
 
     public TableView<Mineral> table;
@@ -39,6 +42,9 @@ public class MainController implements Initializable {
     private final MainModel model = new MainModel();
     private final MineralsDAO mineralsDAO = new MineralsDAO();
 
+    /**
+     * Инициализация экрана
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -54,7 +60,7 @@ public class MainController implements Initializable {
 
         addButton.setOnAction(event -> openAddView());
         deleteButton.setOnAction(event -> {
-            if(table.getSelectionModel().getSelectedIndex()!=-1){
+            if (table.getSelectionModel().getSelectedIndex() != -1) {
                 mineralsDAO.deleteMineral(table.getSelectionModel().getSelectedItem());
             }
         });
@@ -64,28 +70,37 @@ public class MainController implements Initializable {
         });
     }
 
+    /**
+     * Обновление данных
+     */
     public void updateData() {
         model.setMinerals(mineralsDAO.getMinerals());
         updateTable();
     }
 
+    /**
+     * Обновление списка минералов в таблице
+     */
     private void updateTable() {
         ObservableList<Mineral> filtered = FXCollections.observableArrayList();
-        for(Mineral mineral : model.getMinerals()){
-            if(mineral.getName().toLowerCase().contains(searchTextField.getText().trim().toLowerCase())){
+        for (Mineral mineral : model.getMinerals()) {
+            if (mineral.getName().toLowerCase().contains(searchTextField.getText().trim().toLowerCase())) {
                 filtered.add(mineral);
             }
         }
         table.setItems(filtered);
     }
 
+    /**
+     * Запуск экрана добавления минерала
+     */
     private void openAddView() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/add.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Добавление аккаунта");
+            stage.setTitle("Добавление минерала");
             stage.setScene(new Scene(root, 600, 400));
             stage.setResizable(false);
             stage.show();
