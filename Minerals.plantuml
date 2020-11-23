@@ -1,0 +1,134 @@
+@startuml
+
+  namespace sample {
+    class sample.Main {
+      {static} + main()
+               + start()
+    }
+    namespace controllers {
+      class sample.controllers.AddController {
+                + addButton : Button
+                + colorTextField : TextField
+                + densityTextField : TextField
+                + formulaTextField : TextField
+                + hardnessTextField : TextField
+                + lineColorTextField : TextField
+                + messageLabel : Label
+                + nameTextField : TextField
+                + shineTextField : TextField
+                + transparencyTextField : TextField
+                + initialize()
+                + setParent()
+                - checkData()
+      }
+      class sample.controllers.MainController {
+                            + addButton : Button
+                            + colorColumn : TableColumn<Mineral, String>
+                            + deleteButton : Button
+                            + densityColumn : TableColumn<Mineral, String>
+                            + formulaColumn : TableColumn<Mineral, String>
+                            + hardnessColumn : TableColumn<Mineral, String>
+                            + lineColorColumn : TableColumn<Mineral, String>
+                            + nameColumn : TableColumn<Mineral, String>
+                            + searchTextField : TextField
+                            + shineColumn : TableColumn<Mineral, String>
+                            + table : TableView<Mineral>
+                            + transparencyColumn : TableColumn<Mineral, String>
+                            + initialize()
+                            + updateData()
+                            - openAddView()
+                            - updateTable()
+      }
+    }
+    namespace db {
+      class sample.db.Configs {
+        # dbHost : String
+        # dbName : String
+        # dbPass : String
+        # dbPort : String
+        # dbUser : String
+      }
+      class sample.db.Const {
+        {static} + MINERALS_TABLE : String
+        {static} + MINERAL_COLOR : String
+        {static} + MINERAL_DENSITY : String
+        {static} + MINERAL_FORMULA : String
+        {static} + MINERAL_HARDNESS : String
+        {static} + MINERAL_ID : String
+        {static} + MINERAL_LINE_COLOR : String
+        {static} + MINERAL_NAME : String
+        {static} + MINERAL_SHINE : String
+        {static} + MINERAL_TRANSPARENCY : String
+      }
+      class sample.db.DBHandler {
+        + getDbConnection()
+      }
+      interface sample.db.IMineralsDAO {
+        {abstract} + addMineral()
+        {abstract} + deleteMineral()
+        {abstract} + getMinerals()
+      }
+      class sample.db.MineralsDAO {
+        + addMineral()
+        + deleteMineral()
+        + getMinerals()
+      }
+    }
+    namespace models {
+      class sample.models.MainModel {
+        - minerals : List<Mineral>
+        - searchText : String
+        + getMinerals()
+        + getSearchText()
+        + setMinerals()
+        + setSearchText()
+      }
+      class sample.models.AddModel {
+        + getMineral()
+        + setMineral()
+      }
+      class sample.models.Mineral {
+        - color : String
+        - density : String
+        - formula : String
+        - hardness : String
+        - id : long
+        - lineColor : String
+        - name : String
+        - shine : String
+        - transparency : String
+        + Mineral()
+        + getColor()
+        + getDensity()
+        + getFormula()
+        + getHardness()
+        + getId()
+        + getLineColor()
+        + getName()
+        + getShine()
+        + getTransparency()
+        + setColor()
+        + setDensity()
+        + setFormula()
+        + setHardness()
+        + setId()
+        + setLineColor()
+        + setName()
+        + setShine()
+        + setTransparency()
+      }
+    }
+  }
+  sample.Main -up-|> Application
+  sample.controllers.AddController .up.|> Initializable
+  sample.controllers.AddController o-- sample.db.MineralsDAO : mineralsDAO
+  sample.controllers.AddController o-- sample.models.AddModel : model
+  sample.controllers.AddController o-- sample.controllers.MainController : parent
+  sample.controllers.MainController .up.|> Initializable
+  sample.controllers.MainController o-- sample.db.MineralsDAO : mineralsDAO
+  sample.controllers.MainController o-- sample.models.MainModel : model
+  sample.db.DBHandler -up-|> sample.db.Configs
+  sample.db.MineralsDAO .up.|> sample.db.IMineralsDAO
+  sample.db.MineralsDAO o-- sample.db.DBHandler : dbHandler
+  sample.models.AddModel o-- sample.models.Mineral : mineral
+@enduml
